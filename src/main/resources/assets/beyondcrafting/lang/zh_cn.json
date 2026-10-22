@@ -1,0 +1,20 @@
+{
+  "ui.beyondcrafting.page": "深度合成",
+  "ui.beyondcrafting.target": "目标产物",
+  "ui.beyondcrafting.search": "搜索产物",
+  "ui.beyondcrafting.materials": "材料",
+  "ui.beyondcrafting.craft": "合成",
+  "ui.beyondcrafting.line_missing": "缺少 %s ×%s",
+  "ui.beyondcrafting.line_ready": "材料充足",
+  "message.beyondcrafting.done": "深度合成完成",
+  "message.beyondcrafting.already": "网络里已有足够的目标物品",
+  "message.beyondcrafting.disabled": "深度合成已在配置中关闭",
+  "message.beyondcrafting.no_network": "没有可用的维度网络",
+  "message.beyondcrafting.no_space": "网络放不下合成的产物",
+  "message.beyondcrafting.stale": "材料在计算之后发生了变化，请重试",
+  "message.beyondcrafting.no_recipe": "没有找到可用的配方",
+  "message.beyondcrafting.missing": "缺少材料：%s",
+  "ui.beyondcrafting.amount": "合成数量",
+  "message.beyondcrafting.no_recipe_target": "找不到 %s 的合成配方",
+  "ui.beyondcrafting.line_no_recipe": "找不到 %s 的合成配方"
+}

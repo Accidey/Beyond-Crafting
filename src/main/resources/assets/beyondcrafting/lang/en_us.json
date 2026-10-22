@@ -1,0 +1,20 @@
+{
+  "ui.beyondcrafting.page": "Deep Crafting",
+  "ui.beyondcrafting.target": "Target",
+  "ui.beyondcrafting.search": "Search results",
+  "ui.beyondcrafting.materials": "Materials",
+  "ui.beyondcrafting.craft": "Craft",
+  "ui.beyondcrafting.line_missing": "Missing %s x%s",
+  "ui.beyondcrafting.line_ready": "All materials available",
+  "message.beyondcrafting.done": "Deep crafting finished",
+  "message.beyondcrafting.already": "The network already holds enough of that item",
+  "message.beyondcrafting.disabled": "Deep crafting is disabled in the config",
+  "message.beyondcrafting.no_network": "No dimensional network available",
+  "message.beyondcrafting.no_space": "The network cannot hold the result",
+  "message.beyondcrafting.stale": "Materials changed after planning, try again",
+  "message.beyondcrafting.no_recipe": "No usable recipe",
+  "message.beyondcrafting.missing": "Missing materials: %s",
+  "ui.beyondcrafting.amount": "Amount",
+  "message.beyondcrafting.no_recipe_target": "No crafting recipe found for %s",
+  "ui.beyondcrafting.line_no_recipe": "No crafting recipe for %s"
+}

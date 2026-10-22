@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.xulai.beyondcrafting.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DimensionsCraftMenuMixin"
+  ],
+  "client": [
+    "BdPageSelectionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - 合成",
+        "order": 0
+      },
+      "projectName": "合成",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\Games\\MOD\\合成\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\Games\\MOD\\合成\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dbeyondcrafting%%D:\\Games\\MOD\\合成\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - 合成",
+        "order": 1
+      },
+      "projectName": "合成",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\Games\\MOD\\合成\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\Games\\MOD\\合成\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dbeyondcrafting%%D:\\Games\\MOD\\合成\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

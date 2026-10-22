@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.xulai.beyondcrafting.mixin.emi",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "NetRecipeHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,11 @@
+.gradle/
+build/
+run/
+.idea/
+*.log
+
+/BeyondDimensions-1.21.1/
+/JustEnoughItems-1.21.1/
+/emi-1.21/
+
+.workbuddy/

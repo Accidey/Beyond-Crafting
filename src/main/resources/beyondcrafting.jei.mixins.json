@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.xulai.beyondcrafting.mixin.jei",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "CraftMenuRecipeTransferHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
