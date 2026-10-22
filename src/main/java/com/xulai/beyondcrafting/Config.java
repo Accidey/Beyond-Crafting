@@ -31,8 +31,12 @@ public final class Config
                 .comment(
                         "允许拆解压缩方块",
                         "Allow unpacking compression blocks",
-                        "允许把九个同种物品合成的方块拆回九个该物品，例如钻石块拆成九个钻石。",
-                        "Lets a block made of nine identical items be taken apart into those nine items, such as a diamond block into nine diamonds.",
+                        "深度合成时，允许反向使用「9 个同种物品 → 1 个方块」的配方：这类物品不够时，用 1 个方块换回 9 个。",
+                        "When deep crafting, a \"nine identical items into one block\" recipe may be used backwards: one block is turned back into nine items.",
+                        "例如网络里只有钻石块时，合成钻石盔甲会拆掉 1 个钻石块换回 9 个钻石。",
+                        "For example, with only diamond blocks in the network, a diamond chestplate is crafted by unpacking one block into nine diamonds.",
+                        "只影响深度合成的求解与扣料，不提供单独的拆解操作。",
+                        "This only affects deep crafting and adds no separate unpacking action.",
                         "Default: true / 默认：true"
                 )
                 .define("allowReverseCompression", true);
