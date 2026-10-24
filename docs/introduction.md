@@ -1,127 +1,71 @@
 # Beyond Crafting
 
-**Deep crafting for your Beyond Dimensions network — turn what you have into what you need, in one click.**
+An addon for Beyond Dimensions. It adds a **Deep Crafting** tab to the network screen and finishes the job the network starts: you name the item you want, and it works out how to get there from what you are actually holding.
 
----
+## The short version
 
-## The problem
+Your network is full of diamond blocks and not a single loose diamond. You want a chestplate. You click once. The block gets unpacked, the diamonds get moved, the chestplate gets crafted, and the result lands back in the network — along with the one diamond you didn't need.
 
-Beyond Dimensions gives you a network that stores everything. Crafting, though, still works the old way: to make a diamond chestplate you first have to pull out a diamond block, break it back into nine diamonds, put five of them into the right shape, and only then take the result.
+If the chain can't be completed, nothing is taken. The page tells you what is missing, down to the last piece.
 
-The network already knows what you own. It should be able to do the boring part for you.
+## How it behaves
 
-## What this mod does
+- Only crafting-table recipes are followed, shaped and shapeless. Smelting, blasting, smithing and machine recipes are not part of the chain.
+- Materials come out of the network only. Your inventory and the crafting grid are left alone.
+- It always works on your primary network, even when you are looking at a different one.
+- Everything goes through the network's own storage rules and capacity limits, exactly as if you had moved the items by hand. If the network is full, the craft does not happen.
+- A recipe that returns a container — a bucket, say — is evaluated outside the grid, so the returned item is approximated rather than placed back into a specific slot.
+- Compression blocks run backwards: nine identical items into one block, or one block back into nine items. You can turn that off, or exclude individual items.
 
-Beyond Crafting adds a **Deep Crafting** page to the network screen (default key `O`).
+## The screen
 
-Pick what you want to end up with. The mod walks the recipe chain downwards — recipe after recipe — until it reaches materials the network is actually holding, takes everything it needs in a single step, and puts the finished item back into the network.
+Search by name, by pinyin initials, or by item id, pick a quantity between 1 and 4096, and the page shows what will be consumed. If you press the "+" transfer button in JEI or EMI, it opens this page with that recipe's result already selected instead of filling the crafting grid.
 
-If the chain is longer than what you have, you get an exact shopping list instead: what is missing, and how many of it. Nothing is taken when the chain cannot be completed.
+## Does it break the game?
 
-## Features
-
-- **🏗️ One click, whole chain.** Ask for a finished item; intermediate steps are resolved automatically. A diamond block in storage is enough to make a diamond chestplate.
-- **📦 Compression blocks count as materials.** Any block that is crafted from nine identical items can be used the other way around — a diamond block supplies nine diamonds, a block of coal supplies nine coal. This can be turned off, and individual items can be excluded.
-- **🧾 Exact material lists.** Before you commit, the page shows what will be consumed. When something is missing, it says which material and how many, not just "insufficient materials".
-- **🔍 Search that understands players.** Find a target by its name, by pinyin initials, or by its item id. Pick a quantity from 1 up to 4096.
-- **🎯 Works with JEI and EMI.** Pressing the "+" transfer button in either recipe viewer opens the Deep Crafting page with that recipe's result already selected, instead of filling the crafting grid.
-- **🔒 All or nothing.** Materials are only deducted when the entire chain can be satisfied. A failed attempt changes nothing.
-- **♻️ Nothing is lost.** Leftovers from recipes that produce more than one item per craft, and containers returned by a recipe (buckets and the like), go back into the network. Anything the network cannot hold is handed to you.
-- **⚖️ Respects your network.** Everything goes through the network's own storage rules and capacity limits, exactly as if you had moved the items by hand. If the network is full, the craft does not happen.
-
-## What it does not do
-
-Being precise here saves surprises:
-
-- Only **crafting-table recipes** are followed — shaped and shapeless. Smelting, blasting, smoking, smithing and machine recipes are not part of the chain.
-- It uses **only what is in the network**, never your inventory or the crafting grid.
-- It always works on your **primary network**. If you are looking at a different network, the materials still come from your primary one.
-- Recipes that need a container returned in a particular grid position are approximated, because the recipe is evaluated outside the grid.
-
-## Requirements
-
-| | |
-|---|---|
-| Minecraft | 1.21.1 |
-| Loader | NeoForge 21.1.235 or newer |
-| Required | Beyond Dimensions 0.8.0 or newer |
-| Optional | JEI or EMI, for the "+" shortcut |
-
-Beyond Dimensions itself requires CompixelUI and a Kotlin runtime, so you already have them.
+No. Nothing appears that you couldn't have made by hand. It performs the same steps in the right order, with the same inputs and the same outputs. If a recipe is expensive, the result is expensive.
 
 ## Configuration
 
-A few options, all applied without restarting the game:
+Three options, all applied without restarting: the main switch, whether compression blocks may be unpacked (plus a list of items that never should be), and how deep a chain may be followed.
 
-- Turn the whole feature on or off.
-- Allow or disallow unpacking compression blocks, with a list of items that should never be unpacked.
-- Limit how deep a recipe chain may be followed, and how much work a single request may cost.
+## Requirements
 
-## A note on balance
-
-Deep crafting does not create items out of nothing. It only performs the steps you could have performed by hand, in the right order, with the same inputs and the same outputs. If a recipe is expensive, the result is expensive.
+Minecraft 1.21.1, NeoForge 21.1.235 or newer, Beyond Dimensions 0.8.0 or newer. JEI and EMI are optional. Beyond Dimensions already requires CompixelUI and a Kotlin runtime, so you have those either way.
 
 ---
 
 # 超越合成
 
-**为你的超越维度网络做深度合成：手上有什么，就一步做出想要的东西。**
+超越维度的附属模组。它在网络界面里加了一个**深度合成**页签，把网络没做完的那部分接上：你说出想要的东西，它负责算清楚怎么从你现有的存货走到那一步。
 
----
+## 一句话版本
 
-## 问题在哪
+你网络里堆着一堆钻石块，一颗散钻石都没有；你想要一件钻石胸甲。点一下。钻石块被拆开，钻石被搬走，胸甲被合成，成品落回网络——连同你多出来的那一颗钻石。
 
-超越维度给了你一个能装下一切的维度网络，但合成还是老样子：想做一件钻石胸甲，得先把钻石块取出来、拆回九个钻石、摆成胸甲的形状，再取走成品。
+链条走不通的时候，一个材料都不会扣，页面会告诉你具体缺什么、缺几个。
 
-网络本来就清楚你有哪些东西，这些机械的步骤应该由它代劳。
+## 它的行为
 
-## 这个模组做什么
+- 只处理工作台配方，有序的和无序的都算。熔炼、高炉、锻造、各类机器配方不在链条内。
+- 材料只从网络出，背包和合成格一概不碰。
+- 无论你正看着哪个网络，它用的都是你的主网络。
+- 所有进出都走网络自己的存储规则与容量上限，和你手动搬没有区别。网络装不下，就不合成。
+- 配方返还容器（比如桶）时，是在合成格外模拟的，所以返还物只按数量回收，不会摆回某个特定格子。
+- 压缩方块可以反着用：九个同种物品合成一个方块，或者一个方块拆回九个物品。可以整体关掉，也可以把个别物品排除。
 
-超越合成在维度网络界面（默认按 `O` 打开）里加了一页**深度合成**。
+## 界面
 
-你只要选出最终想要的东西。模组会沿着配方一层层往下展开，直到碰上网络里真实存在的材料，然后一次性扣齐、把成品放回网络。
+按名称、拼音首字母、物品 id 搜索，数量在 1 到 4096 之间自己填，页面会列出将要消耗的材料。在 JEI 或 EMI 里点"+"转移按钮，会直接打开这一页并选中该配方的产物，而不是往合成格里塞东西。
 
-如果链条走不到底，你得到的是一份准确的清单：缺什么、缺几个。链条走不通时，一个材料都不会扣。
+## 会破坏游戏吗
 
-## 功能
-
-- **🏗️ 一次点击，整条链走完。** 你只需要目标成品，中间产物自动处理。网络里只有钻石块，也能直接得到钻石胸甲。
-- **📦 压缩方块也算材料。** 凡是"九个同种物品合成一个方块"的东西都能反着用——一个钻石块顶九个钻石，一个煤炭块顶九个煤炭。可以整体关闭，也可以把个别物品排除在外。
-- **🧾 精确的材料清单。** 动手之前就能看到会消耗什么；材料不够时，会说明是哪种材料、差多少个，而不是笼统的一句"材料不足"。
-- **🔍 会读玩家心思的搜索。** 按名称、按拼音首字母、按物品 id 都能找到目标，数量可以在 1 到 4096 之间自己填。
-- **🎯 与 JEI、EMI 联动。** 在任一配方查看器里点"+"转移按钮，会直接打开深度合成页并选中该配方的产物，不再往合成格里塞东西。
-- **🔒 全有或全无。** 只有整条链都能走通才会扣材料；失败一次，什么都不会变。
-- **♻️ 不漏东西。** 一次合成产出多个物品时多出来的部分、以及配方返还的容器（比如桶），都会回到网络；网络装不下的则交给你。
-- **⚖️ 遵守网络的规矩。** 所有进出都走网络自己的存储规则与容量上限，和你手动搬运完全一样。网络放不下，就不会合成。
-
-## 它不做的事
-
-说清楚这些，可以少很多意外：
-
-- 只处理**工作台配方**（有序与无序）。熔炼、高炉、烟熏、锻造以及各类机器配方都不在链条内。
-- 只使用**网络里**的材料，不动背包，也不动合成格。
-- 永远作用于你的**主网络**。即使你正在看另一个网络，材料仍来自主网络。
-- 需要在合成格里特定位置返还容器的配方，结果按近似处理——因为配方并不在合成格里实际摆放。
-
-## 环境要求
-
-| | |
-|---|---|
-| Minecraft | 1.21.1 |
-| 加载器 | NeoForge 21.1.235 及以上 |
-| 必需前置 | 超越维度 0.8.0 及以上 |
-| 可选 | JEI 或 EMI，用于"+"快捷入口 |
-
-超越维度本身要求 CompixelUI 与 Kotlin 运行库，所以这些你本来就有。
+不会。没有任何东西是你本来做不出来的。它只是把同样的步骤按正确顺序做一遍，同样的输入，同样的产出。配方贵，结果就贵。
 
 ## 配置
 
-选项不多，改动都不需要重启游戏：
+三个选项，改动都不需要重启游戏：总开关、是否允许拆解压缩方块（可指定永不被拆解的物品）、配方链条最多展开多深。
 
-- 总开关，可整体停用本功能。
-- 是否允许拆解压缩方块，并可指定永不被拆解的物品。
-- 配方链条最多展开多深，以及单次请求最多消耗多少计算。
+## 环境要求
 
-## 关于平衡性
-
-深度合成不会凭空造物。它只是替你把本来就能做的事按正确顺序做了一遍：同样的输入，同样的产出。配方贵，结果就贵。
+Minecraft 1.21.1、NeoForge 21.1.235 或更高版本、超越维度 0.8.0 或更高版本。JEI 与 EMI 可选。超越维度本身就要求 CompixelUI 与 Kotlin 运行库，所以你装不装都有。
