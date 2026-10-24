@@ -29,17 +29,6 @@ Using the transfer button in JEI or EMI opens this page with the result of that 
 
 The main switch, the handling of compression blocks together with an exclusion list, and the resolution limits are configurable. Changes are applied without restarting the game.
 
-## 📋 Requirements
-
-| | |
-| --- | --- |
-| Minecraft | 1.21.1 |
-| Loader | NeoForge 21.1.235 or later |
-| Required | Beyond Dimensions 0.8.0 or later |
-| Optional | JEI or EMI |
-
-Beyond Dimensions requires CompixelUI and a Kotlin runtime, so both are required.
-
 ---
 
 # 超越合成
@@ -72,14 +61,3 @@ Beyond Dimensions requires CompixelUI and a Kotlin runtime, so both are required
 ## 🛠 配置
 
 总开关、压缩方块的处理方式（含排除列表）以及展开上限均可配置，修改后无需重启游戏。
-
-## 📋 环境要求
-
-| | |
-| --- | --- |
-| Minecraft | 1.21.1 |
-| 加载器 | NeoForge 21.1.235 或更高版本 |
-| 必需前置 | 超越维度 0.8.0 或更高版本 |
-| 可选 | JEI 或 EMI |
-
-超越维度本身依赖 CompixelUI 与 Kotlin 运行库，故二者亦为必需。
