@@ -1,67 +1,63 @@
-# 超越合成 Beyond Crafting
+# Beyond Crafting
 
-[超越维度](https://github.com/Frostbite-time/BeyondDimensions)（Beyond Dimensions）的附属模组：给维度网络加一个"深度合成"页签，把配方一路展开到网络里真实存在的材料为止，一次扣料、一次产出。
+An addon for Beyond Dimensions. It provides a deep crafting page inside the dimension network interface. Given a target item, the page expands the full recipe chain down to materials already held by the network, deducts those materials in a single operation, and writes the finished item back to the network.
 
-举例：网络里只有钻石块，想合成钻石胸甲。原版需要先把钻石块拆成钻石、再摆成胸甲形状；本模组直接把整条链路算完，点一次就得到胸甲。
+## 🧭 Operation
 
-## 功能
+The page is part of the dimension network interface. Choose a target item from the search results, which can be matched by item name, by pinyin initials, or by item id, set a quantity between 1 and 4096, and confirm. The page lists the materials that will be consumed. If the chain cannot be completed, no material is deducted, and the missing materials are listed with their exact amounts.
 
-- **递归子配方**：目标物品缺料时沿配方树向下展开，直到网络里有现成的材料为止。
-- **压缩块拆解**：把"9 个同种物品 → 1 个方块"的配方反向使用，例如钻石块拆成 9 个钻石、煤炭块拆成 9 个煤炭。可用配置关闭，也可按物品 id 拉黑。
-- **页签界面**：注入维度存储界面的左侧竖条，搜索配方产物（支持中文、拼音首字母、注册 id），显示材料清单或具体缺少的材料及数量。
-- **配方查看器跳转**：在 JEI 或 EMI 里点"+"，直接跳到本页并预选该产物，不再往合成格塞东西。
-- **原子提交**：材料对不上就一个都不扣，网络放不下产物就不动手；成功后产物与余数一并进入网络。
+## ⚙️ Recipe resolution
 
-## 环境
+- Only crafting-table recipes are considered. Smelting, blasting, smithing and machine recipes are not part of the chain.
+- Compression blocks are usable in both directions. A recipe that combines nine identical items into one block may be run in reverse, so a single diamond block supplies nine diamonds. This behaviour can be disabled, and individual items can be excluded from it.
+- Expansion stops at materials held by the network. Materials in the player inventory and in the crafting grid are not used.
+- Intermediate products are not written to the network. Only the target item and any surplus produced by a recipe are inserted.
+- Containers returned by a recipe are accounted for by quantity. Because a recipe is evaluated outside the crafting grid, the position of a returned container within a grid layout is not reproduced.
+- Chains that exceed the configured depth or node limit are treated as incomplete.
 
-| 项目 | 版本 |
-| --- | --- |
-| Minecraft | 1.21.1 |
-| 加载器 | NeoForge 21.1.235 及以上 |
-| 前置 | Beyond Dimensions 0.8.0 及以上（其自身要求 CompixelUI 与 Kotlin） |
-| 可选 | JEI、EMI（用于"+"跳转，没有也能用页签） |
+## 🔗 Network interaction
 
-## 构建
+Every transfer passes through the network's own storage rules and capacity limits. If the target item or a surplus item cannot be inserted, the operation is aborted before any material is deducted.
 
-`libs/` 下三个 jar 是构建依赖，已在仓库中：Beyond Dimensions 本体、JEI、EMI。JEI 与 EMI 只用于编译对应的可选集成。
+The page always operates on the player's primary network.
 
-```
-./gradlew build
-```
+## 🎯 Recipe viewer integration
 
-产物：`build/libs/beyondcrafting-1.21.1-neoforge-<版本>.jar`
+Using the transfer button in JEI or EMI opens this page with the result of that recipe, instead of filling the crafting grid.
 
-## 配置
+## 🛠 Configuration
 
-`config/beyondcrafting-common.toml`，全部支持热重载。
+The main switch, the handling of compression blocks together with an exclusion list, and the resolution limits are configurable. Changes are applied without restarting the game.
 
-| 配置项 | 默认 | 说明 |
-| --- | --- | --- |
-| `enableDeepCrafting` | true | 总开关 |
-| `allowReverseCompression` | true | 是否允许把 9 合 1 的方块拆回 9 个物品 |
-| `maxRecipeDepth` | 8 | 递归层数上限 |
-| `maxPlanNodes` | 4096 | 单次求解考察的节点上限 |
-| `reverseBlockBlacklist` | 空 | 不允许拆解的物品 id |
+---
 
-## 结构
+# 超越合成
 
-| 路径 | 作用 |
-| --- | --- |
-| `craft/RecipeGraph` | 产物 → 配方索引，含压缩块逆向的虚拟配方 |
-| `craft/RecipeGraphCache` | 索引缓存，客户端与服务端各一份，数据包重载时失效 |
-| `craft/DeepCraftSolver` | 贪心递归求解，输出带缺料清单的 `CraftPlan` |
-| `craft/DeepCraftService` | 两阶段提交：先模拟校验，再扣料入网 |
-| `net/DeepCraftActions` | 注册到维度网络菜单的服务端动作 |
-| `client/page/DeepCraftPage.kt` | 注入 BD 界面的页签 |
-| `mixin/` | 三处注入：切换页签、服务端配方转移兜底、JEI 与 EMI 的"+" |
+超越维度的附属模组，在维度网络界面中提供深度合成功能。给定一个目标物品，页面会展开完整的配方链，直至网络中已有的材料，一次性扣除这些材料，并将成品写回网络。
 
-## 已知限制
+## 🧭 使用方式
 
-- 只处理工作台配方（`RecipeType.CRAFTING`），熔炼、锻造、机器配方不参与递归。
-- 服务端始终操作玩家的**主网络**；在非主网络的界面里点合成，扣的是主网络的料。
-- 配方里带容器的返还物（如桶）按 3×3 输入重建后计算，个别依赖格子位置的配方可能与实际有出入。
-- 同一组材料对应多个产物时，服务端兜底路径的产物是推断出来的；JEI 与 EMI 的"+"路径用的是配方对象本身，不会有这个问题。
+该页面位于维度网络界面内。在搜索结果中选择目标物品，搜索支持按名称、拼音首字母或物品 id 匹配，设定 1 至 4096 之间的数量并确认。页面会列出将被消耗的材料。若配方链无法完成，则不会扣除任何材料，并列出缺失材料的种类与数量。
 
-## 许可证
+## ⚙️ 配方展开规则
 
-MIT
+- 仅处理工作台配方，熔炼、高炉、锻造及各类机器配方不参与展开。
+- 压缩方块可按两个方向使用。将九个同种物品合成一个方块的配方可反向执行，即一个钻石块可提供九个钻石。该行为可关闭，也可指定排除个别物品。
+- 展开在网络上已有的材料处停止，玩家背包与合成格中的材料不被使用。
+- 中间产物不会写入网络，只有目标物品与配方产生的多余产物会被插入。
+- 配方返还的容器按数量处理。由于配方在合成格之外结算，返还容器在格位中的摆放位置不会被复现。
+- 超出设定深度或节点上限的配方链视为无法完成。
+
+## 🔗 与网络的交互
+
+所有转移均经过网络自身的存储规则与容量限制。若目标物品或多余产物无法插入网络，操作会在扣除任何材料之前中止。
+
+该页面始终作用于玩家的主网络。
+
+## 🎯 配方查看器联动
+
+在 JEI 或 EMI 中点击转移按钮时，将打开此页面并选中该配方的产物，而不是填充合成格。
+
+## 🛠 配置
+
+总开关、压缩方块的处理方式（含排除列表）以及展开上限均可配置，修改后无需重启游戏。
